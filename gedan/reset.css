@@ -23,6 +23,7 @@ blockquote {
     display: inline-block;
     border-top: 3px solid #000;
     vertical-align: 4px;
+	width: 100%;
 }
 
 .xuhao {
