@@ -148,7 +148,7 @@
 	        temp = ""
 	        for (var i = 0; i < songs.length; i++) {
 	        	if (temp != songs[i].when) {
-	        		ap("</hr><h1 class='week'>" + songs[i].when + "</h1>")
+	        		ap("<span class='line'></span><h1 class='week'>" + songs[i].when + "</h1>")
 	        		temp = songs[i].when
 	        	}
 	        	ap("<span class='xuhao'>" + (i + 1) + "、</span>")
