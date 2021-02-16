@@ -21,7 +21,6 @@ blockquote {
 
 .line {
     display: inline-block;
-    width: 100%;
     border-top: 3px solid #000;
     vertical-align: 4px;
 }
