@@ -41,11 +41,13 @@
 			<img src="../img/歌单.png" alt="歌单"><span><input type="file" id="csvFileInput" onchange="readCSVFile(this)"/>导入歌单</span>
 		</div>
 		<div class="input fullwidth">
-			<label class="input-title" id="zxbh">最小编号</label><input placeholder="最小编号" type="text" id="low" value="1">
+			<label class="input-title" id="zxbh">最小编号</label><input placeholder="最小编号" type="text" id="low" value="0">
 			<script type="text/javascript">
 				largest = localStorage.getItem("largest")
-				if(largest != null && largest != "")
+				if(largest != null && largest != ""){
 					$("#zxbh").html("最小编号(上一次的最大编号是" + largest + ")")
+					$("#low").value(Number(largest) + 1)
+				}
 			</script>
 		</div>
 		<div class="select fullwidth">
