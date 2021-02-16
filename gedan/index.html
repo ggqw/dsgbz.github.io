@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport" />
+	<title>佩伦导航-歌单整理</title>
+	<meta name="description" content="佩伦导航是各类网站的集合，依据类型进行导航。便于各类用户快速找到自己想要的网站。本站具有较高的实用性，无任何类型的广告，简洁易用。致力于成为您的浏览器主页。">
+	<meta name="keywords" content="导航页,佩伦导航,导航,网址导航">
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<style type="text/css"> 
+		#csvFileInput{
+		    position: absolute;
+		    right: 0px;
+		    opacity: 0;
+		}
+	</style> 
+  </head>
+  <body id="bo">
+  	<script type="text/javascript">
+  		function song(name, singer, way, when, say, to) {
+			this.name = name;
+			this.singer = singer;
+			this.way = way
+			this.when = when;
+			this.say = say;
+			this.to = to
+		}
+  	</script>
+  	<div class="bgimg" style="background-image: url(&quot;http://api.btstu.cn/sjbz/?lx=dongman&amp;k=8197557733577572&quot;);"></div>
+	<div class="navbar">
+		<header>
+			<h1 class="title"><a href="https://mp.weixin.qq.com/s/FIQXB75zQJLThpQM9ZVk8A" class="nuxt-link-exact-active nuxt-link-active title  transparent">缔声广播站 - 歌单整理</a></h1>
+			<a class="subtitle  transparent" onclick="location.reload();">
+				<span id="text">&nbsp;何其所幸 执此一声</span>
+			</a>
+		</header>
+	</div>
+	<div class="con transparent">
+		<div class="title">
+			<img src="../img/歌单.png" alt="歌单"><span><input type="file" id="csvFileInput" onchange="readCSVFile(this)"/>导入歌单</span>
+		</div>
+		<div class="input fullwidth">
+			<label class="input-title">最小编号</label><input placeholder="最小编号" type="text" id="low" value="1">
+		</div>
+		<div class="select fullwidth">
+			<div class="btn start">
+				开始导出
+			</div>
+		</div>
+	</div>
+	<div class="con transparent" style="width: 35%;">
+		<div class="title">
+			<img src="../img/歌单2.png" alt="歌单2"><span>导出结果</span>
+		</div>
+		<div contenteditable="true" style="height: 15rem;overflow: hidden;">
+			<img src="https://cdn.jsdelivr.net/gh/dsgbz/dsgbz.github.io/img/gz.png" alt="ydyA1A.png" border="0" width="100%" />
+			<section id="gedan" style="background: url(https://img.lanrentuku.com/img/allimg/1206/5-1206010S332-50.gif)">
+				
+			</section>
+			<span></span>
+		</div>
+	</div>
+	<div class="con transparent">
+		<div class="title">
+			<img src="../img/歌单2.png" alt="歌单2"><span>导出代码</span>
+		</div>
+		<div contenteditable="true">
+			<textarea id="daima" style="resize: none;height: 5rem;">&lt;!DOCTYPE html&gt;&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;head&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;&lt;meta HTTP-EQUIV=&quot;pragma&quot; CONTENT=&quot;no-cache&quot;&gt;&lt;meta HTTP-EQUIV=&quot;Cache-Control&quot; CONTENT=&quot;no-cache, must-revalidate&quot;&gt;&lt;meta HTTP-EQUIV=&quot;expires&quot; CONTENT=&quot;0&quot;&gt;&lt;meta content=&quot;width=device-width,initial-scale=1,maximum-scale=1&quot; name=&quot;viewport&quot;&gt;&lt;title&gt;缔声广播站 - 歌单&lt;/title&gt;&lt;meta name=&quot;description&quot; content=&quot;佩伦导航是各类网站的集合，依据类型进行导航。便于各类用户快速找到自己想要的网站。本站具有较高的实用性，无任何类型的广告，简洁易用。致力于成为您的浏览器主页。&quot;&gt;&lt;meta name=&quot;keywords&quot; content=&quot;导航页,佩伦导航,导航,网址导航&quot;&gt;&lt;script src=&quot;https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js&quot;&gt;&lt;/script&gt;&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;reset.css&quot;&gt;&lt;/head&gt;&lt;body id=&quot;bo&quot;&gt;&lt;div class=&quot;bgimg&quot; style=&quot;background-image:url(&apos;http://api.btstu.cn/sjbz/?lx=dongman&amp;k=8197557733577572	&apos;)&quot;&gt;&lt;/div&gt;&lt;div class=&quot;navbar&quot; background=&quot;../img/bk.jpg&quot;&gt;&lt;header&gt;&lt;h1 class=&quot;title&quot;&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/FIQXB75zQJLThpQM9ZVk8A&quot; class=&quot;nuxt-link-exact-active nuxt-link-active title transparent&quot;&gt;缔声广播站歌单&lt;/a&gt;&lt;/h1&gt;&lt;a class=&quot;subtitle transparent&quot; onclick=&quot;location.reload()&quot;&gt;&lt;span id=&quot;text&quot;&gt;&nbsp;何其所幸 执此一声&lt;/span&gt;&lt;/a&gt;&lt;/header&gt;&lt;div class=&quot;con transparent&quot;&gt;&lt;div class=&quot;title&quot;&gt;&lt;img src=&quot;../img/歌单.png&quot; alt=&quot;歌单&quot;&gt;&lt;span&gt;歌单(点击歌名可以直接搜索播放)&lt;/span&gt;&lt;/div&gt;</textarea>
+		</div>
+	</div>
+
+	<script>
+		var allData;
+	    function csvToObject(csvString){
+	        var csvarry = csvString.split("\r\n");
+	        var datas = [];
+	        var headers = csvarry[0].split(",");
+	        for(var i = 1;i < csvarry.length;i++){
+	            var data = {};
+	            var temp = csvarry[i].split(",");
+	                 for(var j = 0;j < temp.length;j++){
+	                     data[headers[j]] = temp[j].replace(/\"/g, "");
+	                 }
+	            datas.push(data);
+	        }
+	         return datas;
+	    }
+
+	     function FuncCSVInport() {
+	         $("#csvFileInput").val("");
+	         $("#csvFileInput").click();
+	     }
+
+	     function readCSVFile(obj) {
+	         var reader = new FileReader();
+	         reader.readAsText(obj.files[0]);
+	         reader.onload = function () {
+	               data = csvToObject(this.result);
+	               allData = data
+	               console.log(data);
+	        }
+	   }
+	</script>
+    <script type="text/javascript">
+    	function compare(pro) { 
+		    return function (obj1, obj2) { 
+		        var val1 = obj1[pro]; 
+		        var val2 = obj2[pro]; 
+		        if (val1 > val2 ) { //正序
+		            return 1; 
+		        } else if (val1 < val2 ) { 
+		            return -1; 
+		        } else { 
+		            return 0; 
+		        } 
+		    }
+		}
+
+		function ap (s) { 
+			$("#gedan").html($("#gedan").html() + s)
+			$("#daima").val($("#daima").val() + s)
+		}
+		function sp (s) { 
+			$("#gedan").html($("#gedan").html() + s)
+		}
+		function p (s) { 
+			$("#daima").val($("#daima").val() + s)
+		}
+
+		$(".start").click(function() {
+    		var songs = new Array();
+
+    		var lowest = parseInt($("#low").val());
+			for (var i = 0; i < data.length - 1; i++) {
+				if(parseInt(allData[i]["\"编号\""]) <= lowest)	break;
+				songs.push(new song(allData[i]["\"1.歌曲名称\""], allData[i]["\"2.歌手名字（选填）\""], allData[i]["\"3.可播放该歌曲的平台\""], allData[i]["\"4.预期播放时间\""], allData[i]["\"5.留言（选填）\""], allData[i]["\"6.________送给_________（选填）:1[题目填空]\""]+"送给"+allData[i]["\"6.________送给_________（选填）:2[题目填空]\""]));
+			}
+			songs.sort(compare("song"));
+			songs.sort(compare("singer"));
+	        songs.sort(compare("when"));
+	        console.log(songs)
+	        temp = ""
+	        for (var i = 0; i < songs.length; i++) {
+	        	if (temp != songs[i].when) {
+	        		ap("<span class='line'></span><h1 class='week'>" + songs[i].when + "</h1>")
+	        		temp = songs[i].when
+	        	}
+	        	ap("<span class='xuhao'>" + (i + 1) + "、</span>")
+	        	sp("<span class='name " + songs[i].way.substr(0, 1) +"'>" + songs[i].name + "</span>")
+
+	        	mlink = "https://music.163.com/#/search/m/?s="
+	        	if (songs[i].way.substr(0, 1) == "B") mlink = "https://y.qq.com/portal/search.html?w="
+	        	p("<span class='name " + songs[i].way.substr(0, 1) + "' onclick=\"window.open('" + mlink + songs[i].name + " " + songs[i].singer + "','_blank');\">" + songs[i].name + "</span>")
+
+	        	ap("&nbsp;&nbsp;<span class='singer'>&nbsp;" + songs[i].singer + "</span></br>")
+	        	var blacklist = "恋爱/爱情/情感/遇见/相遇/爱/表白/男朋友/女朋友/喜欢/老婆/老公/媳妇/对象/想你/感情/女孩/女孩/站长/琨/校长/love/like/Love/Like/幸福/一生/此生/一辈子/陪伴".split("/")
+	        	var say = songs[i].say;
+	        	for (var j = 0; j < blacklist.length; j++) {
+	        		//say = say.replace(blacklist[j], "<h1>" + blacklist[j] + "</h1>")
+	        		var reg = new RegExp(blacklist[j],"g");
+	        		say = say.replace(reg, "**")
+	        	}
+	        	if(songs[i].to != "送给")	say = "<b style='color:#5236a0;'>" + songs[i].to + "</b>&nbsp;&nbsp;&nbsp;&nbsp;"+ say
+	        	if(say != "")
+	        		ap("<blockquote class='say'>" + say + "</blockquote>")
+	        }
+	        $("#daima").append("&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;")
+		})
+    </script>
+    <script>
+		$("#daima").bind('click',function(){
+			$("#daima").select();
+		})
+	</script>
+</body>
+</html>
