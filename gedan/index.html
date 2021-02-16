@@ -41,7 +41,12 @@
 			<img src="../img/歌单.png" alt="歌单"><span><input type="file" id="csvFileInput" onchange="readCSVFile(this)"/>导入歌单</span>
 		</div>
 		<div class="input fullwidth">
-			<label class="input-title">最小编号</label><input placeholder="最小编号" type="text" id="low" value="1">
+			<label class="input-title" id="zxbh">最小编号</label><input placeholder="最小编号" type="text" id="low" value="1">
+			<script type="text/javascript">
+				largest = localStorage.getItem("largest")
+				if(largest != null && largest != "")
+					$("#zxbh").html("最小编号(上一次的最大编号是" + largest + ")")
+			</script>
 		</div>
 		<div class="select fullwidth">
 			<div class="btn start">
@@ -130,8 +135,9 @@
 
 		$(".start").click(function() {
     		var songs = new Array();
-
     		var lowest = parseInt($("#low").val());
+    		localStorage.setItem("largest", allData[0]["\"编号\""])
+
 			for (var i = 0; i < data.length - 1; i++) {
 				if(parseInt(allData[i]["\"编号\""]) <= lowest)	break;
 				songs.push(new song(allData[i]["\"1.歌曲名称\""], allData[i]["\"2.歌手名字（选填）\""], allData[i]["\"3.可播放该歌曲的平台\""], allData[i]["\"4.预期播放时间\""], allData[i]["\"5.留言（选填）\""], allData[i]["\"6.________送给_________（选填）:1[题目填空]\""]+"送给"+allData[i]["\"6.________送给_________（选填）:2[题目填空]\""]));
