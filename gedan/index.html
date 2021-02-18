@@ -8,13 +8,6 @@
 	<meta name="keywords" content="导航页,佩伦导航,导航,网址导航">
 	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="reset.css">
-	<style type="text/css"> 
-		#csvFileInput{
-		    position: absolute;
-		    right: 0px;
-		    opacity: 0;
-		}
-	</style> 
   </head>
   <body id="bo">
   	<script type="text/javascript">
@@ -38,22 +31,11 @@
 	</div>
 	<div class="con transparent">
 		<div class="title">
-			<img src="../img/歌单.png" alt="歌单"><span><input type="file" id="csvFileInput" onchange="readCSVFile(this)"/>导入歌单</span>
-		</div>
-		<div class="input fullwidth">
-			<label class="input-title" id="zxbh">最小编号</label><input placeholder="最小编号" type="text" id="low" value="0">
-			<script type="text/javascript">
-				largest = localStorage.getItem("largest")
-				if(largest != null && largest != ""){
-					$("#zxbh").html("最小编号(上一次的最大编号是" + largest + ")")
-					$("#low").val(Number(largest) + 1)
-				}
-			</script>
+			<img src="../img/歌单.png" alt="歌单"><span>导入歌单</span>
 		</div>
 		<div class="select fullwidth">
-			<div class="btn start">
-				开始导出
-			</div>
+			<input type="file" id="csvFileInput" onchange="readCSVFile(this)"/><br>
+			<div class="btn start">开始导出</div>
 		</div>
 	</div>
 	<div class="con transparent" style="width: 35%;">
@@ -137,32 +119,33 @@
 
 		$(".start").click(function() {
     		var songs = new Array();
-    		var lowest = parseInt($("#low").val());
     		localStorage.setItem("largest", allData[0]["\"编号\""])
 
 			for (var i = 0; i < data.length - 1; i++) {
-				if(parseInt(allData[i]["\"编号\""]) <= lowest)	break;
-				songs.push(new song(allData[i]["\"1.歌曲名称\""], allData[i]["\"2.歌手名字（选填）\""], allData[i]["\"3.可播放该歌曲的平台\""], allData[i]["\"4.预期播放时间\""], allData[i]["\"5.留言（选填）\""], allData[i]["\"6.________送给_________（选填）:1[题目填空]\""]+"送给"+allData[i]["\"6.________送给_________（选填）:2[题目填空]\""]));
+				songs.push(new song(allData[i]["\"1.歌曲名称\""], allData[i]["\"2.歌手名字（选填）\""], allData[i]["\"3.可以播放《该歌曲》的平台\""], allData[i]["\"4.预期播放时间\""], allData[i]["\"5.留言（选填）\""], allData[i]["\"6.________送给_________（选填）:1[题目填空]\""]+"送给"+allData[i]["\"6.________送给_________（选填）:2[题目填空]\""]));
 			}
-			songs.sort(compare("song"));
-			songs.sort(compare("singer"));
-	        songs.sort(compare("when"));
-	        console.log(songs)
+			songs.reverse()
+	        songs.sort(compare("when"))
+
 	        temp = ""
-	        for (var i = 0; i < songs.length; i++) {
+	        sNum = 0
+	        for (var i = 0; i < songs.length; i++,sNum++) {
 	        	if (temp != songs[i].when) {
+	        		if (sNum - 8 > 0) ap("(有 " + (sNum - 8) + " 首歌被隐藏)")
 	        		ap("<span class='line'></span><h1 class='week'>" + songs[i].when + "</h1>")
 	        		temp = songs[i].when
-	        	}
+	        		sNum = 0
+	        	} else if(sNum >= 8 && temp != "F.任意 AnyTime") continue
 	        	ap("<span class='xuhao'>" + (i + 1) + "、</span>")
 	        	sp("<span class='name " + songs[i].way.substr(0, 1) +"'>" + songs[i].name + "</span>")
 
 	        	mlink = "https://music.163.com/#/search/m/?s="
 	        	if (songs[i].way.substr(0, 1) == "B") mlink = "https://y.qq.com/portal/search.html?w="
-	        	p("<span class='name " + songs[i].way.substr(0, 1) + "' onclick=\"window.open('" + mlink + songs[i].name + " " + songs[i].singer + "','_blank');\">" + songs[i].name + "</span>")
+	        	var reg = new RegExp("'","g");
+	        	p("<span class='name " + songs[i].way.substr(0, 1) + "' onclick='window.open(\"" + mlink + songs[i].name.replace(reg, "’") + " " + songs[i].singer.replace(reg, "’") + "\",\"_blank\");'>" + songs[i].name + "</span>")
 
 	        	ap("&nbsp;&nbsp;<span class='singer'>&nbsp;" + songs[i].singer + "</span></br>")
-	        	var blacklist = "恋爱/爱情/情感/遇见/相遇/爱/表白/男朋友/女朋友/喜欢/老婆/老公/媳妇/对象/想你/感情/女孩/女孩/站长/琨/校长/love/like/Love/Like/幸福/一生/此生/一辈子/陪伴".split("/")
+	        	var blacklist = "恋爱/爱情/情感/遇见/相遇/爱/表白/男朋友/女朋友/喜欢/老婆/老公/媳妇/对象/想你/感情/我的女孩/站长/琨/校长/love/like/Love/Like/幸福/一生/此生/一辈子/陪伴".split("/")
 	        	var say = songs[i].say;
 	        	for (var j = 0; j < blacklist.length; j++) {
 	        		//say = say.replace(blacklist[j], "<h1>" + blacklist[j] + "</h1>")

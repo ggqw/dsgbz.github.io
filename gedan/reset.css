@@ -7,9 +7,7 @@ blockquote {
   position: relative;
 }
 
-#gedan {
-	
-}
+#gedan {}
 
 .week {
 	font-size: 1.825rem;
@@ -23,7 +21,7 @@ blockquote {
     display: inline-block;
     border-top: 3px solid #000;
     vertical-align: 4px;
-	width: 100%;
+    width: 100%;
 }
 
 .xuhao {
@@ -58,9 +56,7 @@ blockquote {
     font-weight: bold;
 }
 
-.say {
-	
-}
+.say {}
 *{margin:0;padding:0}
 html{background:#f4f8fb;line-height:1.15;-webkit-text-size-adjust:100%}
 body{position:relative;display:block;box-sizing:border-box;margin:0 auto;padding:0 1.25rem 1.25rem;max-width:75rem;font-family:Source Sans Pro,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif}
