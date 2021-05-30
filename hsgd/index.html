@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport" />
+	<title>佩伦导航-红色歌单整理</title>
+	<meta name="description" content="佩伦导航是各类网站的集合，依据类型进行导航。便于各类用户快速找到自己想要的网站。本站具有较高的实用性，无任何类型的广告，简洁易用。致力于成为您的浏览器主页。">
+	<meta name="keywords" content="导航页,佩伦导航,导航,网址导航">
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="reset.css">
+  </head>
+  <body id="bo">
+  	<script type="text/javascript">
+  		function song(name, singer, way, say) {
+			this.name = name;
+			this.singer = singer;
+			this.way = way;
+			this.say = say;
+		}
+  	</script>
+  	<div class="bgimg" style="background-image: url(&quot;http://api.btstu.cn/sjbz/?lx=dongman&amp;k=8197557733577572&quot;);"></div>
+	<div class="navbar">
+		<header>
+			<h1 class="title"><a href="https://mp.weixin.qq.com/s/FIQXB75zQJLThpQM9ZVk8A" class="nuxt-link-exact-active nuxt-link-active title  transparent">缔声广播站 - 歌单整理</a></h1>
+			<a class="subtitle  transparent" onclick="location.reload();">
+				<span id="text">&nbsp;何其所幸 执此一声</span>
+			</a>
+		</header>
+	</div>
+	<div class="con transparent">
+		<div class="title">
+			<img src="../img/歌单.png" alt="歌单"><span>导入歌单</span>
+		</div>
+		<div class="select fullwidth">
+			<input type="file" id="csvFileInput" onchange="readCSVFile(this)"/><br>
+			<div class="btn start">开始导出</div>
+		</div>
+	</div>
+	<div class="con transparent" style="width: 35%;">
+		<div class="title">
+			<img src="../img/歌单2.png" alt="歌单2"><span>导出结果</span>
+		</div>
+		<div contenteditable="true" style="/*height: 15rem;*/overflow: hidden;color: #fff;">
+			<img src="https://cdn.jsdelivr.net/gh/dsgbz/dsgbz.github.io/img/gz2.png" alt="欢迎关注智慧缔声.png" border="0" width="100%"/><section id="gedan" style="/*background: url(https://img.lanrentuku.com/img/allimg/1206/5-1206010S332-50.gif)*/background:rgb(196,28,31);"></section>
+			<span></span>
+		</div>
+	</div>
+	<div class="con transparent">
+		<div class="title">
+			<img src="../img/歌单2.png" alt="歌单2"><span>导出代码</span>
+		</div>
+		<div contenteditable="true"><!--&lt;!DOCTYPE html&gt;&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;head&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;&lt;meta HTTP-EQUIV=&quot;pragma&quot; CONTENT=&quot;no-cache&quot;&gt;&lt;meta HTTP-EQUIV=&quot;Cache-Control&quot; CONTENT=&quot;no-cache, must-revalidate&quot;&gt;&lt;meta HTTP-EQUIV=&quot;expires&quot; CONTENT=&quot;0&quot;&gt;&lt;meta content=&quot;width=device-width,initial-scale=1,maximum-scale=1&quot; name=&quot;viewport&quot;&gt;&lt;title&gt;缔声广播站-最新歌单&lt;/title&gt;&lt;meta name=&quot;description&quot; content=&quot;缔声广播站歌单&quot;&gt;&lt;meta name=&quot;keywords&quot; content=&quot;缔声,长春市实验中学,广播站,歌单&quot;&gt;&lt;script src=&quot;https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js&quot;&gt;&lt;/script&gt;&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;reset.css&quot;&gt;&lt;/head&gt;&lt;body id=&quot;bo&quot;&gt;&lt;div class=&quot;bgimg&quot; style=&quot;background-image:url(&apos;http://api.btstu.cn/sjbz/?lx=dongman&amp;k=8197557733577572	&apos;)&quot;&gt;&lt;/div&gt;&lt;div class=&quot;navbar&quot; background=&quot;../img/bk.jpg&quot;&gt;&lt;header&gt;&lt;h1 class=&quot;title&quot;&gt;&lt;a id=&quot;print&quot; class=&quot;nuxt-link-exact-active nuxt-link-active title transparent&quot;&gt;缔声广播站 - 最新歌单&lt;/a&gt;&lt;/h1&gt;&lt;a class=&quot;subtitle transparent&quot; onclick=&quot;location.reload()&quot;&gt;&lt;span id=&quot;text&quot;&gt;&nbsp;何其所幸 执此一声&lt;/span&gt;&lt;/a&gt;&lt;/header&gt;&lt;div class=&quot;con transparent&quot;&gt;&lt;div class=&quot;title&quot;&gt;&lt;img src=&quot;../img/歌单.png&quot; alt=&quot;歌单&quot;&gt;&lt;span&gt;最新歌单-->
+			<textarea id="daima" style="resize: none;height: 5rem;"></textarea>
+		</div>
+	</div>
+
+	<script>
+		var myDate = new Date();
+		$("#daima").append()
+
+		var allData;
+	    function csvToObject(csvString){
+	        var csvarry = csvString.split("\r\n");
+	        var datas = [];
+	        var headers = csvarry[0].split(",");
+	        for(var i = 1;i < csvarry.length;i++){
+	            var data = {};
+	            var temp = csvarry[i].split(",");
+	                 for(var j = 0;j < temp.length;j++){
+	                     data[headers[j]] = temp[j].replace(/\"/g, "");
+	                 }
+	            datas.push(data);
+	        }
+	         return datas;
+	    }
+
+	     function FuncCSVInport() {
+	         $("#csvFileInput").val("");
+	         $("#csvFileInput").click();
+	     }
+
+	     function readCSVFile(obj) {
+	         var reader = new FileReader();
+	         reader.readAsText(obj.files[0]);
+	         reader.onload = function () {
+	               data = csvToObject(this.result);
+	               allData = data
+	               console.log(data);
+	        }
+	   }
+	</script>
+    <script type="text/javascript">
+    	var strVar = "";
+			    strVar += "<!DOCTYPE html>\n";
+			    strVar += "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n";
+			    strVar += "  <head>\n";
+			    strVar += "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n";
+			    strVar += "    <meta http-equiv=\"pragma\" content=\"no-cache\" />\n";
+			    strVar += "    <meta http-equiv=\"Cache-Control\" content=\"no-cache, must-revalidate\" />\n";
+			    strVar += "    <meta http-equiv=\"expires\" content=\"0\" />\n";
+			    strVar += "    <meta\n";
+			    strVar += "      content=\"width=device-width,initial-scale=1,maximum-scale=1\"\n";
+			    strVar += "      name=\"viewport\"\n";
+			    strVar += "    />\n";
+			    strVar += "    <title>缔声广播站-最新歌单<\/title>\n";
+			    strVar += "    <meta name=\"description\" content=\"缔声广播站歌单\" />\n";
+			    strVar += "    <meta name=\"keywords\" content=\"缔声,长春市实验中学,广播站,歌单\" />\n";
+			    strVar += "    <script src=\"https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js\"><\/script>\n";
+			    strVar += "    <link rel=\"stylesheet\" type=\"text/css\" href=\"reset.css\" />\n";
+			    strVar += "  <\/head>\n";
+			    strVar += "  <body id=\"bo\">\n";
+			    strVar += "    <div\n";
+			    strVar += "      class=\"bgimg\"\n";
+			    strVar += "      style=\"\n";
+			    strVar += "        background-image: url(http://api.btstu.cn/sjbz/?lx=dongman&k=8197557733577572);\n";
+			    strVar += "      \"\n";
+			    strVar += "    ><\/div>\n";
+			    strVar += "    <div class=\"bgimg\" id=\"yfz\" style=\"background-image: url(https://z3.ax1x.com/2021/03/21/648YtS.png);\"    ></div>";
+			    strVar += "    <div class=\"navbar\" background=\"../img/bk.jpg\">\n";
+			    strVar += "      <header>\n";
+			    strVar += "      <input id=\"hide\" type=\"text\" style=\"opacity: 0;\">";
+			    strVar += "        <h1 class=\"title\">\n";
+			    strVar += "          <a\n";
+			    strVar += "            id=\"print\"\n";
+			    strVar += "            class=\"nuxt-link-exact-active nuxt-link-active title transparent\"\n";
+			    strVar += "            >缔声广播站 - 最新歌单<\/a\n";
+			    strVar += "          >\n";
+			    strVar += "        <\/h1>\n";
+			    strVar += "        <a class=\"subtitle transparent\" onclick=\"location.reload()\"\n";
+			    strVar += "          ><span id=\"text\"> 何其所幸 执此一声<\/span><\/a\n";
+			    strVar += "        >\n";
+			    strVar += "      <\/header>\n";
+			    strVar += "      <div class=\"con transparent\">\n";
+			    strVar += "        <div class=\"title\">\n";
+			    strVar += "          <img src=\"../img/歌单.png\" alt=\"歌单\" /><span\n";
+			    strVar += "            >最新歌单(更新时间：" + myDate.toLocaleDateString() + ")<\/span\n";
+			    strVar += "          >\n";
+			    strVar += "        <\/div>"
+
+    	function compare(pro) { 
+		    return function (obj1, obj2) { 
+		        var val1 = obj1[pro]; 
+		        var val2 = obj2[pro]; 
+		        if (val1 > val2 ) { //正序
+		            return 1; 
+		        } else if (val1 < val2 ) { 
+		            return -1; 
+		        } else { 
+		            return 0; 
+		        } 
+		    }
+		}
+
+		function ap (s) { 
+			$("#gedan").html($("#gedan").html() + s)
+			$("#daima").val($("#daima").val() + s)
+		}
+		function sp (s) { 
+			$("#gedan").html($("#gedan").html() + s)
+		}
+		function p (s) { 
+			$("#daima").val($("#daima").val() + s)
+		}
+
+		$(".start").click(function() {
+			p(strVar)
+
+    		var songs = new Array();
+
+			for (var i = 0; i < data.length - 1; i++) {
+				songs.push(new song(allData[i]["\"1.歌曲名称\""], allData[i]["\"2.歌手名字（选填）\""], allData[i]["\"3.可以播放该歌曲的平台\""], allData[i]["\"4.留言（选填）\""]));
+			}
+			console.log(songs)
+			//songs.reverse()
+
+	        temp = ""
+	        for (var i = 0; i < songs.length; i++) {
+	        	ap("            " + (i + 1) + "、")
+	        	sp("<span class='name " + songs[i].way.substr(0, 1) +"'>" + songs[i].name + "</span>")
+
+	        	//mlink = "https://music.163.com/#/search/m/?s="
+	        	//if (songs[i].way.substr(0, 1) == "B") mlink = "https://y.qq.com/portal/search.html?w="
+	        	//var reg = new RegExp("'","g");
+	        // onclick='window.open(\"" + mlink + songs[i].name.replace(reg, "’") + " " + songs[i].singer.replace(reg, "’") + "\",\"_blank\");'
+	        	sw = songs[i].way.substr(0, 1)
+	        	softname = "网易云音乐"
+	        	if(sw == "B")	softname = "QQ 音乐"
+
+	        	p("<span class='name " + sw + "' title=\"&#10;点击复制《" + songs[i].name + "》&#10;然后请粘贴到 " + softname + " 中&#10;——爱你的 pljj\" onclick=\"copy('" + songs[i].name +" "+ songs[i].singer + "')\">" + songs[i].name + "</span>")
+
+	        	ap("\n            	<span class='singer'> " + songs[i].singer + "</span><br />")
+	        	var say = songs[i].say;
+	        	if(say != "")
+	        		ap("\n            	<blockquote class='say'>" + say + "</blockquote>")
+	        	p("\n")
+	        }
+	        $("#daima").val($("#daima").val() + "<\/div><\/div><script type=\"text\/javascript\">$(\"#yfz\").fadeOut(0);$(\"#print\").click(function(){window.print();})\nfunction copy(text){$(\"#hide\").val(text);$(\"#hide\").select();document.execCommand(\"Copy\");$(\"#yfz\").fadeIn(0);$(\"#yfz\").fadeOut(2000);}<\/script><\/body><\/html>")
+		})
+    </script>
+    <script>
+		$("#daima").bind('click',function(){
+			$("#daima").select();
+		})
+	</script>
+</body>
+</html>
